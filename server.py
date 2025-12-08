@@ -7,7 +7,7 @@ from datetime import datetime
 from socket import *
 
 #fixed server IP and port
-SERVER_IP = "172.28.211.68"
+SERVER_IP = "0.0.0.1"
 SERVER_PORT = 12001
 
 #lock for safe multi-threaded access to clients dictionary
