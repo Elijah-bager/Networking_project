@@ -3,10 +3,11 @@ import os
 import random
 import string
 import threading
+from datetime import datetime
 from socket import *
 
 #fixed server IP and port
-SERVER_IP = "192.168.1.4"
+SERVER_IP = "172.28.211.68"
 SERVER_PORT = 12001
 
 #lock for safe multi-threaded access to clients dictionary
@@ -19,8 +20,8 @@ def broadcast(sender, msg):
     #safely access shared clients
     with clients_lock:
         for username, client_socket in clients.items():
-            if username == sender:
-                continue    #skip sender
+            #if username == sender:
+                #continue    #skip sender
             try:
                 client_socket.sendall((msg + "\n").encode())    #send message
             except:
@@ -125,7 +126,8 @@ def client_handler(client_socket, addr):
                 client_socket.send(f"[SERVER] User {target_user} not found.\n".encode())
         else:
             #FEATURE 1: broadcast message
-            broadcast(username, f"[{username}]: {msg}")
+            timestamp = datetime.now().strftime("%H:%M:%S")
+            broadcast(username, f"[{timestamp}] [{username}]: {msg}")
 
     #remove client and close connection
     remove_client(username)
