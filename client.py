@@ -7,7 +7,7 @@ from socket import *
 import tkinter as tk
 from tkinter import scrolledtext, simpledialog
 
-SERVER_IP = "0.0.0.1"
+SERVER_IP = "172.20.10.2"
 SERVER_PORT = 12001
 
 #create TCP client Socket
